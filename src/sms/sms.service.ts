@@ -12,14 +12,14 @@ export class SmsService {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: process.env.SMS_SERVICE_URL,
+      url: process.env.SMS_SERVICE_URL|| "",
       headers: {
         Authorization: `Bearer ${process.env.SMS_TOKEN}`,
       },
       data: data,
     };
     try {
-      const response = await axios(config);
+      const response = await axios(config!);
       return response;
     } catch (error) {
       console.log(error);

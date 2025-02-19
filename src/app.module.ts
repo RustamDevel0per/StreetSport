@@ -13,6 +13,8 @@ import { OwnerLicense } from './owner_license/model/owner_license.model';
 import { OrderStatusModule } from './order_status/order_status.module';
 import { OrderStatus } from './order_status/models/order_status.model';
 import { PaymentStatus } from './payment_status/models/payment_status.model';
+import { AdminModule } from './admin/admin.module';
+import { Admin } from './admin/models/admin.model';
 
 @Module({
   imports: [
@@ -24,7 +26,7 @@ import { PaymentStatus } from './payment_status/models/payment_status.model';
       port: Number(process.env.POSTGRES_PORT),
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, OwnerLicense,PaymentStatus ,OrderStatus],
+      models: [User, OwnerLicense,PaymentStatus ,OrderStatus, Admin],
       autoLoadModels: true,
       sync: { alter: true },
       logging: false,
@@ -38,6 +40,7 @@ import { PaymentStatus } from './payment_status/models/payment_status.model';
     OwnerLicenseModule,
     PaymentStatus,
     OrderStatusModule,
+    AdminModule,
   ],
   controllers: [],
   providers: [],

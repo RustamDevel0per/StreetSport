@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript"
+import { Wallet } from "../../wallet/models/wallet.model";
 
 interface IUserCreationAttr {
   first_name:string
@@ -81,4 +82,7 @@ export class User extends Model<User, IUserCreationAttr> {
     type: DataType.STRING,
   })
   hashed_refresh_token: string | null;
+
+  @HasMany(()=>Wallet)
+  wallets: Wallet[]
 }

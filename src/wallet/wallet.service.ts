@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateWalletDto } from './dto/create-wallet.dto';
 import { UpdateWalletDto } from './dto/update-wallet.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { Wallet } from './models/wallet.model';
 
 @Injectable()
 export class WalletService {
+
+  constructor(
+    @InjectModel(Wallet) private readonly walletService : typeof Wallet
+  ){}
+
   create(createWalletDto: CreateWalletDto) {
-    return 'This action adds a new wallet';
+    return this.walletService.create(createWalletDto)
   }
 
   findAll() {
-    return `This action returns all wallet`;
+    return this.walletService.findAll()
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} wallet`;
+    return this.walletService.findByPk(id)
   }
 
   update(id: number, updateWalletDto: UpdateWalletDto) {
-    return `This action updates a #${id} wallet`;
+    return this.walletService.update(updateWalletDto,{where:{id}, returning:true})
   }
 
   remove(id: number) {
-    return `This action removes a #${id} wallet`;
+    return this.walletService.destroy({where:{id}})
   }
 }

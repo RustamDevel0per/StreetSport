@@ -15,6 +15,14 @@ import { DistrictModule } from "./district/district.module";
 import { MediaModule } from "./media/media.module";
 import { SprotVenueModule } from "./sprot-venue/sprot-venue.module";
 import { CategoryModule } from "./category/category.module";
+import { Admin } from "./admin/models/admin.model";
+import { Wallet } from "./wallet/models/wallet.model";
+import { Usercard } from "./usercard/models/usercard.model";
+import { Region } from "./region/entities/region.entity";
+import { SportVenue } from "./sprot-venue/entities/sprot-venue.entity";
+import { PaymentStatus } from "./payment_status/models/payment_status.model";
+import { District } from "./district/entities/district.entity";
+import { Category } from "./category/entities/category.entity";
 
 @Module({
   imports: [
@@ -26,7 +34,7 @@ import { CategoryModule } from "./category/category.module";
       port: Number(process.env.POSTGRES_PORT),
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, OwnerLicense],
+      models: [User, OwnerLicense, Admin, Wallet, Usercard, Region, SportVenue, PaymentStatus, District, Category ],
       autoLoadModels: true,
       sync: { alter: true },
       logging: false,
@@ -34,7 +42,7 @@ import { CategoryModule } from "./category/category.module";
     AuthModule,
     UsersModule,
     SmsModule,
-    IdentificationModule,
+    // IdentificationModule,
     UsercardModule,
     WalletModule,
     OwnerLicenseModule,
